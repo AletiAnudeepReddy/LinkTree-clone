@@ -3,10 +3,10 @@ import Link from 'next/link'
 
 const Navbar = () => {
   return (
-    <nav className='bg-white flex justify-between w-[80vw] fixed top-10 right-[10vw] rounded-full p-5 px-7'>
+    <nav className='bg-white flex justify-between w-[80vw] fixed top-10 right-[10vw] rounded-full p-5 px-12'>
         <div className='logo flex gap-20 items-center'>
             <Link href={"/"}>
-                <svg className='h-7' viewBox="0 0 1176 238" title="Linktree Logo" 
+                <svg className='h-6' viewBox="0 0 1176 238" title="Linktree Logo" 
                 xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 25.5326H33.7257V202.802H127.205V233.988H0V25.5326ZM160.564 25.5326C172.111 25.5326 181.642 
                 34.469 181.642 45.9586C181.642 57.6307 172.111 66.9318 160.564 66.9318C148.833 66.9318 139.485 57.6307 
@@ -29,16 +29,16 @@ const Navbar = () => {
                 111.431H984.277V79.1509H984.643ZM1063.46 157.572H1097.55V234.17H1063.46V157.572Z"></path>
                 </svg>
             </Link>
-            <ul className='flex gap-10'>
-                <li className='hover:font-bold'>Templates</li>
-                <li className='hover:font-bold'>Marketplace</li>
-                <li className='hover:font-bold'>Discover</li>
-                <li className='hover:font-bold'>Pricing</li>
-                <li className='hover:font-bold'>Learn</li>
+            <ul className='flex text-lg'>
+                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Templates</li>
+                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Marketplace</li>
+                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Discover</li>
+                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Pricing</li>
+                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Learn</li>
             </ul>
         </div>
         <div className='flex gap-3'>
-            <button className='login bg-yellow-50  font-bold rounded-lg p-4 px-5'>Log in</button>
+            <button className='login bg-gray-100  font-bold rounded-lg p-4 px-5'>Log in</button>
             <button className='signup bg-gray-900 font-bold text-white rounded-full p-4'>Sign up free</button>
         </div>
     </nav>
