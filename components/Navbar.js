@@ -1,14 +1,42 @@
-import React from 'react'
+'use client' // if using Next.js App Router
+
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const Navbar = () => {
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    if (typeof window !== "undefined") {
+      if (window.scrollY > lastScrollY) {
+        // scroll down
+        setShowNavbar(false);
+      } else {
+        // scroll up
+        setShowNavbar(true);
+      }
+      setLastScrollY(window.scrollY);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener('scroll', controlNavbar);
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
   return (
-    <nav className='bg-white flex justify-between w-[80vw] fixed top-10 right-[10vw] rounded-full p-5 px-12'>
-        <div className='logo flex gap-20 items-center'>
-            <Link href={"/"}>
-                <svg className='h-6' viewBox="0 0 1176 238" title="Linktree Logo" 
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 25.5326H33.7257V202.802H127.205V233.988H0V25.5326ZM160.564 25.5326C172.111 25.5326 181.642 
+    <nav className={`bg-white flex justify-between w-[80vw] fixed top-10 right-[10vw] rounded-full p-5 px-12 transition-transform duration-300 z-50
+      ${showNavbar ? 'translate-y-0' : '-translate-y-[150%]'}`}>
+      <div className='logo flex gap-20 items-center'>
+        <Link href={"/"}>
+          <svg className='h-6' viewBox="0 0 1176 238" title="Linktree Logo" xmlns="http://www.w3.org/2000/svg">
+            {/* your SVG path here */}
+            <path d="M0 25.5326H33.7257V202.802H127.205V233.988H0V25.5326ZM160.564 25.5326C172.111 25.5326 181.642 
                 34.469 181.642 45.9586C181.642 57.6307 172.111 66.9318 160.564 66.9318C148.833 66.9318 139.485 57.6307 
                 139.485 45.9586C139.485 34.469 148.833 25.5326 160.564 25.5326ZM144.067 83.7103H176.51V233.988H144.067V83.7103ZM195.572 
                 83.7103H228.015V104.501C237.546 88.6345 254.042 79.6981 275.854 79.6981C311.046 79.6981 333.041 107.054 333.041 
@@ -27,22 +55,29 @@ const Navbar = () => {
                 139.882H941.936ZM984.643 79.1509H1042.56L1001.32 40.1226L1024.05 16.9609L1063.28 57.0835V0H1097.37V57.0835L1136.59 16.9609L1159.32 
                 40.1226L1118.08 79.1509H1176V111.431H1117.71L1159.14 151.554L1136.41 174.169L1080.14 117.815L1023.87 174.169L1001.14 151.554L1042.56 
                 111.431H984.277V79.1509H984.643ZM1063.46 157.572H1097.55V234.17H1063.46V157.572Z"></path>
-                </svg>
-            </Link>
-            <ul className='flex text-lg'>
-                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Templates</li>
-                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Marketplace</li>
-                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Discover</li>
-                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Pricing</li>
-                <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Learn</li>
-            </ul>
-        </div>
-        <div className='flex gap-3'>
-            <button className='login bg-gray-100  font-bold rounded-lg p-4 px-5'>Log in</button>
-            <button className='signup bg-gray-900 font-bold text-white rounded-full p-4'>Sign up free</button>
-        </div>
+          </svg>
+        </Link>
+        <ul className='flex text-lg'>
+          <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Templates</li>
+          <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Marketplace</li>
+          <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Discover</li>
+          <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Pricing</li>
+          <li className='hover:rounded-lg p-2 px-4 hover:bg-gray-100'>Learn</li>
+        </ul>
+      </div>
+      <div className='flex gap-3'>
+        <button className='login bg-gray-100 font-bold rounded-lg p-4 px-5'>Log in</button>
+        <button className='signup bg-gray-900 font-bold text-white rounded-full p-4'>Sign up free</button>
+      </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
+
+
+
+
+
+
+
