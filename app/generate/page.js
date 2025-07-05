@@ -28,7 +28,9 @@ const Generate = () => {
 
         const r=await fetch("http://localhost:3000/api/add",requestOptions)
         const result=await r.json()
-        toast(r.message)
+        toast(result.message)
+        setlink("")
+        setlinktext("")
 
     }
   return (
@@ -48,7 +50,8 @@ const Generate = () => {
                 <div className='ml-2'>
                     <input value={linktext||""} onChange={e=>{setlinktext(e.target.value)}} className='px-4 bg-white py-2 mr-2 my-2 focus:outline-pink-500 rounded-full' type='text' placeholder='Enter Link text'/>
                     <input value={link||""} onChange={e=>{setlink(e.target.value)}} className='px-4 bg-white py-2 mr-2 my-2 focus:outline-pink-500 rounded-full' type='text' placeholder='Enter Link'/>
-                    <button  className='p-5 py-2 ml-1 cursor-pointer hover:bg-slate-800 bg-slate-700 text-white font-bold rounded-3xl'>Add Link</button>
+                    <button onClick={()=>{addLink(link,linktext,handle)}} className='p-5 py-2 ml-1 cursor-pointer hover:bg-slate-800 bg-slate-700 text-white font-bold rounded-3xl'>Add Link</button>
+                    <ToastContainer/>
                 </div>
             </div>
             <div className='item'>
@@ -61,7 +64,7 @@ const Generate = () => {
             </div>
             </div>
         </div>
-        <div className='flex justify-center items-center col2 w-full h-screen bg-slate-100'>
+        <div className='flex justify-center items-center col2 w-full h-screen bg-slate-200'>
             <img className='h-full object-contain mr-[6vw]' src='/generate.png' alt='generate'/>
         </div>
     </div>
