@@ -31,12 +31,6 @@ export default function Home() {
       <section className="bg-[#e9c0e9] min-h-[100vh]">
         
       </section>
-      <section className="bg-[#780016] min-h-[100vh]">
-        
-      </section>
-      <section className="bg-[#e8efd6] min-h-[100vh]">
-        
-      </section>
     </main>
   );
 }

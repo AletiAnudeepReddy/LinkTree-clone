@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -28,9 +29,12 @@ const Navbar = () => {
       };
     }
   }, [lastScrollY]);
+  const pathname = usePathname()
+  const shownavbar=["/","/generate"].includes(pathname)
 
-  return (
-    <nav className={`bg-white flex justify-between w-[80vw] fixed top-10 right-[10vw] rounded-full p-5 px-12 transition-transform duration-300 z-50
+  return (<>
+    
+    {shownavbar&&<nav className={`bg-white flex justify-between w-[80vw] fixed top-10 right-[10vw] rounded-full p-5 px-12 transition-transform duration-300 z-50
       ${showNavbar ? 'translate-y-0' : '-translate-y-[150%]'}`}>
       <div className='logo flex gap-20 items-center'>
         <Link href={"/"}>
@@ -69,7 +73,7 @@ const Navbar = () => {
         <button className='login bg-gray-100 font-bold rounded-lg p-4 px-5'>Log in</button>
         <button className='signup bg-gray-900 font-bold text-white rounded-full p-4'>Sign up free</button>
       </div>
-    </nav>
+    </nav>}</>
   );
 };
 
